@@ -3,6 +3,17 @@
 set -euo pipefail
 : "${INSTALL_DIR:?INSTALL_DIR must be set}"
 
+INSTALL_SUCCESS=0
+
+cleanup_on_failure() {
+  if [[ "$INSTALL_SUCCESS" -ne 1 ]]; then
+    echo "Installation failed. Cleaning up ${INSTALL_DIR} ..."
+    rm -rf "${INSTALL_DIR}"
+  fi
+}
+
+trap cleanup_on_failure EXIT
+
 # On HPC systems, Miniforge3 may be provided as a module.
 # Uncomment the following line if needed:
 # module load Miniforge3
@@ -44,3 +55,6 @@ bash "$TMPDIR/berzelius-alphafold-guide/patch/patch_2.3.1/patch_2.3.1.sh" "${INS
 # Final setup
 chmod +x ${INSTALL_DIR}/run_alphafold.sh
 ln -s "${INSTALL_DIR}/run_alphafold.sh" "${INSTALL_DIR}/scripts/run_alphafold.sh"
+
+INSTALL_SUCCESS=1
+echo "AlphaFold 2.3.1 installation completed successfully in ${INSTALL_DIR}"
