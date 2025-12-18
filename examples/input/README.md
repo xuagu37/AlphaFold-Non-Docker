@@ -33,13 +33,15 @@ You will need **one** of the following environments:
 ## With Miniforge3
 
 ### Installation
-Make sure you have Miniforge3 installed. Then, run the installation script for your desired AlphaFold version:
+Make sure you have **Miniforge3** installed.  
+If you are working on an HPC system, you can uncomment the `module load` line in the installation script to load Miniforge3 via the module system.
+
+Then, run the installation script for your desired AlphaFold version:
 ```bash
 AF_VERSION=2.3.1  # Set desired AlphaFold version here
 export INSTALL_DIR="$HOME/AlphaFold/${AF_VERSION}"
 bash conda/install_alphafold_${AF_VERSION}.sh
 ```
-If you are working on a HPC, you can uncomment the `module load` line in the script. 
 
 ### Usage
 

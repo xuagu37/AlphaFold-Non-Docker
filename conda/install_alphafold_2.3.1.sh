@@ -22,7 +22,7 @@ mkdir -p ${INSTALL_DIR}
 # Create conda environment
 git clone https://gitlab.liu.se/xuagu37/berzelius-alphafold-guide "$TMPDIR/berzelius-alphafold-guide"
 mamba env create \
-  -f "$TMPDIR/berzelius-alphafold-guide/alphafold_2.3.1.yml" \
+  -f "$TMPDIR/berzelius-alphafold-guide/conda/alphafold_2.3.1.yml" \
   -p "${INSTALL_DIR}/envs/alphafold_2.3.1"
 
 # Download AlphaFold source
