@@ -39,7 +39,7 @@ AF_VERSION=2.3.1  # Set desired AlphaFold version here
 export INSTALL_DIR="$HOME/AlphaFold/${AF_VERSION}"
 bash conda/install_alphafold_${AF_VERSION}.sh
 ```
-
+If you are working on a HPC, you can uncomment the `module load` line in the script. 
 
 ### Usage
 

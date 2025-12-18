@@ -3,6 +3,17 @@
 set -euo pipefail
 : "${INSTALL_DIR:?INSTALL_DIR must be set}"
 
+# On HPC systems, Miniforge3 may be provided as a module.
+# Uncomment the following line if needed:
+# module load Miniforge3
+
+# Check that mamba is available
+if ! command -v mamba >/dev/null 2>&1; then
+  echo "ERROR: mamba command not found."
+  echo "Please uncomment the module load line or install Miniforge3 (or another Mamba distribution) before running this script."
+  exit 1
+fi
+
 TMPDIR=$(mktemp -d)
 trap "rm -rf $TMPDIR" EXIT
 
