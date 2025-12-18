@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
-
 set -euo pipefail
 : "${INSTALL_DIR:?INSTALL_DIR must be set}"
 
-INSTALL_SUCCESS=0
+# On HPC systems, Miniforge3 may be provided as a module.
+# Uncomment the following line if needed:
+# module load Miniforge3
 
+INSTALL_SUCCESS=0
 cleanup_on_failure() {
   if [[ "$INSTALL_SUCCESS" -ne 1 ]]; then
     echo "Installation failed. Cleaning up ${INSTALL_DIR} ..."
@@ -13,10 +15,6 @@ cleanup_on_failure() {
 }
 
 trap cleanup_on_failure EXIT
-
-# On HPC systems, Miniforge3 may be provided as a module.
-# Uncomment the following line if needed:
-# module load Miniforge3
 
 # Check that mamba is available
 if ! command -v mamba >/dev/null 2>&1; then
