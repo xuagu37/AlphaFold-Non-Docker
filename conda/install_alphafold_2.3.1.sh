@@ -39,7 +39,7 @@ wget -q -P "${INSTALL_DIR}/alphafold/common/" \
   https://git.scicore.unibas.ch/schwede/openstructure/-/raw/7102c63615b64735c4941278d92b554ec94415f8/modules/mol/alg/src/stereo_chemical_props.txt
 
 # Install patch
-bash "$TMPDIR/berzelius-alphafold-guide/patch/patch_2.3.1.sh" "${INSTALL_DIR}"
+bash "$TMPDIR/berzelius-alphafold-guide/patch/patch_2.3.1/patch_2.3.1.sh" "${INSTALL_DIR}"
 
 # Final setup
 chmod +x ${INSTALL_DIR}/run_alphafold.sh
