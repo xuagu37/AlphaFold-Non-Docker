@@ -10,16 +10,6 @@ echo "=== AlphaFold 2.3.1 installation started ==="
 echo "Installation directory: ${INSTALL_DIR}"
 echo
 
-INSTALL_SUCCESS=0
-cleanup_on_failure() {
-  if [[ "$INSTALL_SUCCESS" -ne 1 ]]; then
-    echo "Installation failed. Cleaning up ${INSTALL_DIR} ..."
-    rm -rf "${INSTALL_DIR}"
-  fi
-}
-
-trap cleanup_on_failure EXIT
-
 # Check that mamba is available
 if ! command -v mamba >/dev/null 2>&1; then
   echo "ERROR: mamba command not found."
@@ -66,7 +56,8 @@ wget -q -P "${INSTALL_DIR}/alphafold/common/" \
 # Install patch
 echo
 echo "Step 6/7: Installing AlphaFold patches..."
-bash "$TMPDIR/berzelius-alphafold-guide/patch/patch_2.3.1/patch_2.3.1.sh" "${INSTALL_DIR}"
+cd $TMPDIR/
+bash "berzelius-alphafold-guide/patch/patch_2.3.1/patch_2.3.1.sh" "${INSTALL_DIR}"
 
 # Final setup
 echo
@@ -74,7 +65,6 @@ echo "Step 7/7: Finalizing installation..."
 chmod +x ${INSTALL_DIR}/run_alphafold.sh
 ln -s "${INSTALL_DIR}/run_alphafold.sh" "${INSTALL_DIR}/scripts/run_alphafold.sh"
 
-INSTALL_SUCCESS=1
 echo
 echo "=== AlphaFold 2.3.1 installation completed successfully ==="
 echo "Installed in: ${INSTALL_DIR}"
