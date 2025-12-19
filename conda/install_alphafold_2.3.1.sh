@@ -85,7 +85,7 @@ case ":\${LD_LIBRARY_PATH:-}:" in
   *) export LD_LIBRARY_PATH="\${CONDA_PREFIX}/lib:\${LD_LIBRARY_PATH:-}" ;;
 esac
 
-echo "AlphaFold \${AF_VERSION} environment configured."
+echo "AlphaFold ${AF_VERSION} environment configured."
 EOF
 
 chmod +x "${INSTALL_DIR}/scripts/alphafold_env.sh"

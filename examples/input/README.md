@@ -38,7 +38,7 @@ If you are working on an HPC system, you can uncomment the `module load` line in
 
 Then, run the installation script for your desired AlphaFold version:
 ```bash
-AF_VERSION=2.3.1  # Set desired AlphaFold version here
+export AF_VERSION=2.3.1  # Set desired AlphaFold version here
 export INSTALL_DIR="$HOME/AlphaFold/${AF_VERSION}"
 bash conda/install_alphafold_${AF_VERSION}.sh
 ```
