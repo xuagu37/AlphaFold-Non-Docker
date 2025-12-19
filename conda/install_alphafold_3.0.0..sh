@@ -6,7 +6,7 @@ set -euo pipefail
 # Uncomment the following line if needed:
 # module load Miniforge3
 
-echo "=== AlphaFold 2.3.1 installation started ==="
+echo "=== AlphaFold 3.0.0 installation started ==="
 echo "Installation directory: ${INSTALL_DIR}"
 echo
 
@@ -31,36 +31,25 @@ git clone --quiet https://gitlab.liu.se/xuagu37/berzelius-alphafold-guide "$TMPD
 echo
 echo "Step 2: Creating Mamba environment (this may take a while)..."
 mamba env create --yes --quiet \
-  -f "$TMPDIR/berzelius-alphafold-guide/conda/alphafold_2.3.1.yml" \
-  -p "${INSTALL_DIR}/envs/alphafold_2.3.1"
+  -f "$TMPDIR/berzelius-alphafold-guide/conda/alphafold_3.0.0.yml" \
+  -p "${INSTALL_DIR}/envs/alphafold_3.0.0"
 
 # Download AlphaFold source
 echo
-echo "Step 3: Downloading AlphaFold 2.3.1 source code..."
-wget -q -O "$TMPDIR/v2.3.1.tar.gz" \
-  https://github.com/deepmind/alphafold/archive/refs/tags/v2.3.1.tar.gz
-tar -xf "$TMPDIR/v2.3.1.tar.gz" -C "${INSTALL_DIR}" --strip-components=1
-
-# Apply OpenMM patch
-echo
-echo "Step 4: Applying OpenMM patch..."
-cd ${INSTALL_DIR}/envs/alphafold_2.3.1/lib/python3.8/site-packages/ 
-patch -p0 < ${INSTALL_DIR}/docker/openmm.patch
-
-# Download chemical properties
-echo
-echo "Step 5: Downloading chemical properties file..."
-wget -q -P "${INSTALL_DIR}/alphafold/common/" \
-  https://git.scicore.unibas.ch/schwede/openstructure/-/raw/7102c63615b64735c4941278d92b554ec94415f8/modules/mol/alg/src/stereo_chemical_props.txt
+echo "Step 3: Downloading AlphaFold 3.0.0 source code..."
+wget -q -O "$TMPDIR/v3.0.0.tar.gz" \
+  https://github.com/deepmind/alphafold3/archive/refs/tags/v3.0.0.tar.gz
+tar -xf "$TMPDIR/v3.0.0.tar.gz" -C "${INSTALL_DIR}" --strip-components=1
 
 # Install patch
 echo
-echo "Step 6: Installing AlphaFold patches..."
-cd $TMPDIR/
-bash "berzelius-alphafold-guide/patch/patch_2.3.1/patch_2.3.1.sh" "${INSTALL_DIR}"
+echo "Step 4: Installing dependency..."
+mamba activate "${INSTALL_DIR}/envs/alphafold_3.0.0"
+pip3 install --no-deps ${INSTALL_DIR}
+build_data
 
 # Create environment setup script
-echo "Step 8 Creating AlphaFold environment setup script..."
+echo "Step 5 Creating AlphaFold environment setup script..."
 cat << 'EOF' > "${INSTALL_DIR}/scripts/alphafold_env.sh"
 #!/usr/bin/env bash
 
@@ -71,6 +60,9 @@ cat << 'EOF' > "${INSTALL_DIR}/scripts/alphafold_env.sh"
 
 export CONDA_PREFIX="${INSTALL_DIR}/envs/alphafold_${AF_VERSION}"
 export ALPHAFOLD_PREFIX="${INSTALL_DIR}"
+export XLA_FLAGS="--xla_gpu_enable_triton_gemm=false"
+export XLA_PYTHON_CLIENT_PREALLOCATE=True
+export XLA_CLIENT_MEM_FRACTION=0.95
 
 # Path setup
 case ":$PATH:" in
@@ -97,5 +89,5 @@ chmod +x ${INSTALL_DIR}/run_alphafold.sh
 ln -sf "${INSTALL_DIR}/run_alphafold.sh" "${INSTALL_DIR}/scripts/run_alphafold.sh"
 
 echo
-echo "=== AlphaFold 2.3.1 installation completed successfully ==="
+echo "=== AlphaFold 3.0.0 installation completed successfully ==="
 echo "Installed in: ${INSTALL_DIR}"

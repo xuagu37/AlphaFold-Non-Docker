@@ -69,8 +69,7 @@ cat << 'EOF' > "${INSTALL_DIR}/scripts/alphafold_env.sh"
 : "${INSTALL_DIR:?INSTALL_DIR must be set}"
 : "${AF_VERSION:?AF_VERSION must be set}"
 
-CONDA_PREFIX="${INSTALL_DIR}/envs/alphafold_${AF_VERSION}"
-
+export CONDA_PREFIX="${INSTALL_DIR}/envs/alphafold_${AF_VERSION}"
 export ALPHAFOLD_PREFIX="${INSTALL_DIR}"
 
 # Path setup
