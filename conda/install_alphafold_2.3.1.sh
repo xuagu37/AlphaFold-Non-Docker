@@ -95,7 +95,7 @@ chmod +x "${INSTALL_DIR}/scripts/alphafold_env.sh"
 echo
 echo "Step 7/7: Finalizing installation..."
 chmod +x ${INSTALL_DIR}/run_alphafold.sh
-ln -s "${INSTALL_DIR}/run_alphafold.sh" "${INSTALL_DIR}/scripts/run_alphafold.sh"
+ln -sf "${INSTALL_DIR}/run_alphafold.sh" "${INSTALL_DIR}/scripts/run_alphafold.sh"
 
 echo
 echo "=== AlphaFold 2.3.1 installation completed successfully ==="
