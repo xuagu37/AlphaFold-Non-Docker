@@ -78,3 +78,5 @@ jaxlib==0.3.25+cuda11.cudnn805 \
 # Apply OpenMM patch.
 cd /opt/miniforge3/lib/python3.8/site-packages
 patch -p0 < /app/alphafold/docker/openmm.patch
+
+chmod u+s /sbin/ldconfig.real

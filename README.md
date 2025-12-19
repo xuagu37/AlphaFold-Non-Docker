@@ -108,3 +108,19 @@ Make sure you have **Apptainer** installed.
 export AF_VERSION=2.3.1  # Set desired AlphaFold version here
 apptainer build alphafold_${AF_VERSION}.sif apptainer/alphafold_${AF_VERSION}.def
 ```
+### Usage
+
+Run AlphaFold with your input sequence file:
+```bash
+export ALPHAFOLD_DB=/proj/common-datasets/AlphaFold
+export ALPHAFOLD_RESULTS=/proj/nsc_testing/xuan/alphafold_results_2.3.1
+apptainer exec --nv alphafold_${AF_VERSION}.sif \
+  /app/alphafold/run_alphafold.sh \
+  -d "${ALPHAFOLD_DB}" \
+  -o "${ALPHAFOLD_RESULTS}/output" \
+  -f "${ALPHAFOLD_RESULTS}/input/T1050.fasta" \
+  -t 2021-11-01 \
+  -g false \
+  -P 3 \
+  -F false
+```
