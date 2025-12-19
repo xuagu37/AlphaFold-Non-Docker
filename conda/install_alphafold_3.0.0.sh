@@ -44,9 +44,10 @@ tar -xf "$TMPDIR/v3.0.0.tar.gz" -C "${INSTALL_DIR}" --strip-components=1
 # Install patch
 echo
 echo "Installing dependency..."
-mamba activate "${INSTALL_DIR}/envs/alphafold_3.0.0"
-pip3 install --no-deps ${INSTALL_DIR}
-build_data
+conda run -p "${INSTALL_DIR}/envs/alphafold_3.0.0" \
+  pip install --no-deps "${INSTALL_DIR}"
+conda run -p "${INSTALL_DIR}/envs/alphafold_3.0.0" \
+  build_data
 
 # Create environment setup script
 echo "Creating AlphaFold environment setup script..."
