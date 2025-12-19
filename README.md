@@ -1,9 +1,9 @@
 # AlphaFold-Non-Docker
 
-This repository provides a **non-Docker setup of AlphaFold** designed for **HPC and bare-metal environments** where Docker is unavailable or impractical.  
+This repository provides a **non-Docker setup of AlphaFold** designed for **HPC and bare-metal environments** where Docker is unavailable or impractical.
 
-The AlphaFold 2 installation includes patch which introduces parallelized MSA searches, multithreading configuration, and a separation of CPU- and GPU-bound stages in the AlphaFold inference pipeline. Please read the [patch notes](https://gitlab.liu.se/xuagu37/berzelius-alphafold-guide/-/blob/main/patch/patch_notes.md?ref_type=heads).
-
+The AlphaFold 2 installation includes patches that introduce parallelized MSA searches, configurable multithreading, and a separation of CPU- and GPU-bound stages in the AlphaFold inference pipeline.  
+Please refer to the [patch notes](https://gitlab.liu.se/xuagu37/berzelius-alphafold-guide/-/blob/main/patch/patch_notes.md?ref_type=heads) for details.
 
 ---
 
