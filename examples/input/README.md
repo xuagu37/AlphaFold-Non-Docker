@@ -45,6 +45,59 @@ bash conda/install_alphafold_${AF_VERSION}.sh
 
 ### Usage
 
+Set up the environment variables:
+```bash
+source "conda/alphafold_env.sh"
+```
+
+Activate the Mamba environment:
+```bash
+mamba activate ${CONDA_PREFIX}
+```
+
+
+
+Run AlphaFold with your input sequence file:
+```bash
+export ALPHAFOLD_DB=/proj/common-datasets/AlphaFold
+export ALPHAFOLD_RESULTS=/proj/nsc_testing/xuan/alphafold_results_2.3.1
+bash run_alphafold.sh \
+  -d ${ALPHAFOLD_DB} \
+  -o ${ALPHAFOLD_RESULTS}/output \
+  -f ${ALPHAFOLD_RESULTS}/input/T1050.fasta \
+  -t 2021-11-01 \
+  -g false \
+  -P 3 \
+  -F false
+```
+
+### Flag descriptions
+
+#### `-P` — Parallel MSA searches
+Controls how many MSA search jobs are executed in parallel during the CPU preprocessing stage.
+
+- `-P 1`  
+  Run MSA searches **sequentially** (no parallelization).
+
+- `-P 3`  
+  Run MSA searches **in parallel** (UniRef90, MGnify, HHblits).  
+  This significantly reduces wall-clock time on multi-core CPU nodes.
+
+> Recommended: set `-P` to the number of MSA backends you want to run concurrently, depending on available CPU resources.
+
+---
+
+#### `-F` — CPU/GPU workflow separation
+Controls whether the GPU-based structure prediction step is executed.
+
+- `-F true`  
+  **Only run CPU steps** (MSA generation and template search).  
+  No GPU resources are required.
+
+- `-F false`  
+  Run the **full AlphaFold pipeline**, including GPU-based structure prediction.
+
+> This option is useful when you want to precompute MSAs on CPU nodes and run GPU prediction separately.
 
 
 ## With Apptainer
