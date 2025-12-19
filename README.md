@@ -115,7 +115,9 @@ Run AlphaFold with your input sequence file:
 export ALPHAFOLD_DB=/proj/common-datasets/AlphaFold
 export ALPHAFOLD_RESULTS=/proj/nsc_testing/xuan/alphafold_results_2.3.1
 apptainer exec --nv alphafold_${AF_VERSION}.sif \
-  /app/alphafold/run_alphafold.sh \
+  --bind "${ALPHAFOLD_DB}:${ALPHAFOLD_DB}" \
+  --bind "${ALPHAFOLD_RESULTS}:${ALPHAFOLD_RESULTS}" \
+  bash /app/alphafold/run_alphafold.sh \
   -d "${ALPHAFOLD_DB}" \
   -o "${ALPHAFOLD_RESULTS}/output" \
   -f "${ALPHAFOLD_RESULTS}/input/T1050.fasta" \
