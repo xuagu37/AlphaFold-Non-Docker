@@ -24,32 +24,32 @@ echo "Creating installation directory..."
 mkdir -p ${INSTALL_DIR}
 
 echo
-echo "Step 1: Cloning installation helper repository..."
+echo "Cloning installation helper repository..."
 git clone --quiet https://gitlab.liu.se/xuagu37/berzelius-alphafold-guide "$TMPDIR/berzelius-alphafold-guide"
 
 # Create mamba environment
 echo
-echo "Step 2: Creating Mamba environment (this may take a while)..."
+echo "Creating Mamba environment (this may take a while)..."
 mamba env create --yes --quiet \
   -f "$TMPDIR/berzelius-alphafold-guide/conda/alphafold_3.0.0.yml" \
   -p "${INSTALL_DIR}/envs/alphafold_3.0.0"
 
 # Download AlphaFold source
 echo
-echo "Step 3: Downloading AlphaFold 3.0.0 source code..."
+echo "Downloading AlphaFold 3.0.0 source code..."
 wget -q -O "$TMPDIR/v3.0.0.tar.gz" \
   https://github.com/deepmind/alphafold3/archive/refs/tags/v3.0.0.tar.gz
 tar -xf "$TMPDIR/v3.0.0.tar.gz" -C "${INSTALL_DIR}" --strip-components=1
 
 # Install patch
 echo
-echo "Step 4: Installing dependency..."
+echo "Installing dependency..."
 mamba activate "${INSTALL_DIR}/envs/alphafold_3.0.0"
 pip3 install --no-deps ${INSTALL_DIR}
 build_data
 
 # Create environment setup script
-echo "Step 5 Creating AlphaFold environment setup script..."
+echo "Creating AlphaFold environment setup script..."
 cat << 'EOF' > "${INSTALL_DIR}/scripts/alphafold_env.sh"
 #!/usr/bin/env bash
 
@@ -84,7 +84,7 @@ chmod +x "${INSTALL_DIR}/scripts/alphafold_env.sh"
 
 # Final setup
 echo
-echo "Step 7/7: Finalizing installation..."
+echo "Finalizing installation..."
 chmod +x ${INSTALL_DIR}/run_alphafold.sh
 ln -sf "${INSTALL_DIR}/run_alphafold.sh" "${INSTALL_DIR}/scripts/run_alphafold.sh"
 
