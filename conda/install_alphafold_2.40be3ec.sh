@@ -42,8 +42,6 @@ cd "$TMPDIR/alphafold"
 git checkout 40be3ec
 # Copy EVERYTHING, including dotfiles
 cp -a . "${INSTALL_DIR}/"
-# Cleanup
-rm -rf "$TMPDIR"
 # jax 0.4.26 does not have scipy.special.softmax
 # To fix this:
 sed -i 's/from jax\.scipy import special/from scipy import special/' \
