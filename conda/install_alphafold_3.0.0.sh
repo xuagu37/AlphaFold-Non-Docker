@@ -74,14 +74,7 @@ esac
 echo "AlphaFold ${AF_VERSION} environment configured."
 EOF
 
-chmod +x "${INSTALL_DIR}/scripts/alphafold_env.sh"
-
-
-# Final setup
-echo
-echo "Finalizing installation..."
-chmod +x ${INSTALL_DIR}/run_alphafold.sh
-ln -sf "${INSTALL_DIR}/run_alphafold.sh" "${INSTALL_DIR}/scripts/run_alphafold.sh"
+chmod +x "${INSTALL_DIR}/alphafold_env.sh"
 
 echo
 echo "=== AlphaFold 3.0.0 installation completed successfully ==="
