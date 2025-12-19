@@ -100,3 +100,11 @@ Controls whether the GPU-based structure prediction step is executed.
 
 
 ## Using Apptainer
+
+### Installation
+Make sure you have **Apptainer** installed.
+
+```bash
+export AF_VERSION=2.3.1  # Set desired AlphaFold version here
+apptainer build alphafold_${AF_VERSION}.sif apptainer/alphafold_${AF_VERSION}.def
+```
