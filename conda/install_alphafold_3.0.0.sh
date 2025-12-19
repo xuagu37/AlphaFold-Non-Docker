@@ -41,7 +41,7 @@ wget -q -O "$TMPDIR/v3.0.0.tar.gz" \
   https://github.com/google-deepmind/alphafold3/archive/refs/tags/v3.0.0.tar.gz
 tar -xf "$TMPDIR/v3.0.0.tar.gz" -C "${INSTALL_DIR}" --strip-components=1
 
-# Install patch
+# Install dependency
 echo
 echo "Installing dependency..."
 conda run -p "${INSTALL_DIR}/envs/alphafold_3.0.0" \
@@ -51,7 +51,7 @@ conda run -p "${INSTALL_DIR}/envs/alphafold_3.0.0" \
 
 # Create environment setup script
 echo "Creating AlphaFold environment setup script..."
-cat << 'EOF' > "${INSTALL_DIR}/scripts/alphafold_env.sh"
+cat << 'EOF' > "${INSTALL_DIR}/alphafold_env.sh"
 #!/usr/bin/env bash
 
 # AlphaFold environment setup
@@ -64,12 +64,6 @@ export ALPHAFOLD_PREFIX="${INSTALL_DIR}"
 export XLA_FLAGS="--xla_gpu_enable_triton_gemm=false"
 export XLA_PYTHON_CLIENT_PREALLOCATE=True
 export XLA_CLIENT_MEM_FRACTION=0.95
-
-# Path setup
-case ":$PATH:" in
-  *":${INSTALL_DIR}/scripts:"*) ;;
-  *) export PATH="${INSTALL_DIR}/scripts:$PATH" ;;
-esac
 
 # Library path (only if needed)
 case ":${LD_LIBRARY_PATH:-}:" in
