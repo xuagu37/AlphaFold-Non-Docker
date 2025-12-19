@@ -27,9 +27,9 @@ echo
 echo "Step 1: Cloning installation helper repository..."
 git clone --quiet https://gitlab.liu.se/xuagu37/berzelius-alphafold-guide "$TMPDIR/berzelius-alphafold-guide"
 
-# Create conda environment
+# Create mamba environment
 echo
-echo "Step 2: Creating Conda environment (this may take a while)..."
+echo "Step 2: Creating Mamba environment (this may take a while)..."
 mamba env create --yes --quiet \
   -f "$TMPDIR/berzelius-alphafold-guide/conda/alphafold_2.3.1.yml" \
   -p "${INSTALL_DIR}/envs/alphafold_2.3.1"
