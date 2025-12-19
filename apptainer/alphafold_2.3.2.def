@@ -60,10 +60,10 @@ wget -O /tmp/v2.3.2.tar.gz https://github.com/deepmind/alphafold/archive/refs/ta
 tar -xf /tmp/v2.3.2.tar.gz -C ${ALPHAFOLD_DIR} --strip-components=1
 
 # Apply AF patch
-rm -rf /tmp/berzelius-alphafold-guide
 git clone https://gitlab.liu.se/xuagu37/berzelius-alphafold-guide /tmp/berzelius-alphafold-guide
 cd /tmp
 bash berzelius-alphafold-guide/patch/patch_2.3.2/patch_2.3.2.sh ${ALPHAFOLD_DIR} 
+rm -rf /tmp/berzelius-alphafold-guide
 
 wget -q -P /app/alphafold/alphafold/common/ https://git.scicore.unibas.ch/schwede/openstructure/-/raw/7102c63615b64735c4941278d92b554ec94415f8/modules/mol/alg/src/stereo_chemical_props.txt
 
