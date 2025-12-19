@@ -38,7 +38,7 @@ mamba env create --yes --quiet \
 echo
 echo "Downloading AlphaFold 3.0.0 source code..."
 wget -q -O "$TMPDIR/v3.0.0.tar.gz" \
-  https://github.com/deepmind/alphafold3/archive/refs/tags/v3.0.0.tar.gz
+  https://github.com/google-deepmind/alphafold3/archive/refs/tags/v3.0.0.tar.gz
 tar -xf "$TMPDIR/v3.0.0.tar.gz" -C "${INSTALL_DIR}" --strip-components=1
 
 # Install patch
