@@ -47,7 +47,7 @@ bash conda/install_alphafold_${AF_VERSION}.sh
 
 Set up the environment variables:
 ```bash
-source "conda/alphafold_env.sh"
+source "${INSTALL_DIR}/scripts/alphafold_env.sh"
 ```
 
 Activate the Mamba environment:
