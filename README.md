@@ -19,18 +19,19 @@ The following AlphaFold versions have been tested with different CUDA toolkits a
 | 3.0.0             | 12.6.2       | T4, A100, H200 |
 | 3.0.1             | 12.6.2       | T4, A100, H200 |
 
----
+> **Note**  
+> `40be3ec` refers to a commit hash from the AlphaFold 2 GitHub repository, as no formal release has been published after version 2.3.2.
 
-The `40be3ec` is a commit tag from AlphaFold 2's GitHub repository since they haven't released a formal version after 2.3.2.
+---
 
 ## Prerequisites
 
 You will need **one** of the following environments:
 
-- **Miniforge3** (recommended for native Conda-based installations)
+- **Miniforge3** (recommended for native Conda/Mamba-based installations)
 - **Apptainer** (for containerized execution on HPC systems)
 
-## With Miniforge3
+## Using Miniforge3
 
 ### Installation
 Make sure you have **Miniforge3** installed.  
@@ -98,4 +99,4 @@ Controls whether the GPU-based structure prediction step is executed.
 > This option is useful when you want to precompute MSAs on CPU nodes and run GPU prediction separately.
 
 
-## With Apptainer
+## Using Apptainer
