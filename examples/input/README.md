@@ -55,8 +55,6 @@ Activate the Mamba environment:
 mamba activate ${CONDA_PREFIX}
 ```
 
-
-
 Run AlphaFold with your input sequence file:
 ```bash
 export ALPHAFOLD_DB=/proj/common-datasets/AlphaFold
