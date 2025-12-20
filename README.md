@@ -39,7 +39,7 @@ If you are working on an HPC system, you can uncomment the `module load` line in
 
 Then, run the installation script for your desired AlphaFold version:
 ```bash
-export AF_VERSION=2.3.1  # Set desired AlphaFold version here
+export AF_VERSION=2.3.1
 export INSTALL_DIR="$HOME/AlphaFold/${AF_VERSION}"
 bash conda/install_alphafold_${AF_VERSION}.sh
 ```
@@ -48,6 +48,8 @@ bash conda/install_alphafold_${AF_VERSION}.sh
 
 Set up the environment variables:
 ```bash
+export AF_VERSION=2.3.1
+export INSTALL_DIR="$HOME/AlphaFold/${AF_VERSION}"
 source "${INSTALL_DIR}/scripts/alphafold_env.sh"
 ```
 
@@ -103,6 +105,8 @@ Controls whether the GPU-based structure prediction step is executed.
 
 Set up the environment variables:
 ```bash
+export AF_VERSION=3.0.0
+export INSTALL_DIR="$HOME/AlphaFold/${AF_VERSION}"
 source "${INSTALL_DIR}/alphafold_env.sh"
 ```
 
@@ -132,7 +136,7 @@ python ${ALPHAFOLD_PREFIX}/run_alphafold.py \
 Make sure you have **Apptainer** installed.
 
 ```bash
-export AF_VERSION=2.3.1  # Set desired AlphaFold version here
+export AF_VERSION=2.3.1
 apptainer build alphafold_${AF_VERSION}.sif apptainer/alphafold_${AF_VERSION}.def
 ```
 ### Usage
