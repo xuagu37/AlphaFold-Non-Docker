@@ -44,7 +44,7 @@ export INSTALL_DIR="$HOME/AlphaFold/${AF_VERSION}"
 bash conda/install_alphafold_${AF_VERSION}.sh
 ```
 
-### Usage
+### Usage - AlphaFold 2
 
 Set up the environment variables:
 ```bash
@@ -97,6 +97,33 @@ Controls whether the GPU-based structure prediction step is executed.
   Run the **full AlphaFold pipeline**, including GPU-based structure prediction.
 
 > This option is useful when you want to precompute MSAs on CPU nodes and run GPU prediction separately.
+
+
+### Usage - AlphaFold 3
+
+Set up the environment variables:
+```bash
+source "${INSTALL_DIR}/alphafold_env.sh"
+```
+
+Activate the Mamba environment:
+```bash
+mamba activate ${CONDA_PREFIX}
+```
+
+Run AlphaFold with your input sequence file:
+```bash
+export ALPHAFOLD_DB=/proj/common-datasets/AlphaFold3
+export ALPHAFOLD_MODEL=${ALPHAFOLD_DB}/model_parameters
+export ALPHAFOLD_RESULTS=/proj/nsc_testing/xuan/alphafold_results_3.0.0
+python ${ALPHAFOLD_PREFIX}/run_alphafold.py \
+    --db_dir=${ALPHAFOLD_DB} \
+    --json_path=${ALPHAFOLD_RESULTS}/input/alphafold_input.json \
+    --model_dir=${ALPHAFOLD_MODEL} \
+    --output_dir=${ALPHAFOLD_RESULTS}/output \
+    --flash_attention_implementation=xla \
+    --run_inference=True
+```
 
 
 ## Using Apptainer
